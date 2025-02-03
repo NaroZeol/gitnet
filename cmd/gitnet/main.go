@@ -11,6 +11,14 @@ func main() {
 
 	app.GET("/repos/:repoPath/revision/:revision/files", controller.GetRepoFiles)
 
+	app_api := app.Group("/api")
+	app_api_repo := app_api.Group("/repos")
+	{
+		app_api_repo.GET("/getBranches", controller.GetBranches)
+		app_api_repo.POST("/createBranch", controller.CreateBranch)
+		app_api_repo.POST("/deleteBranch", controller.DeleteBranch)
+	}
+
 	// Listen and Server in 0.0.0.0:8080
 	app.Run(":8080")
 }

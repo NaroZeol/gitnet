@@ -6,7 +6,7 @@ import (
 	"github.com/gin-gonic/gin"
 
 	"gitnet/internal/pkg/common"
-	"gitnet/internal/server/service"
+	"gitnet/internal/server/service/git"
 )
 
 // route: /api/repo/getBranches [Get]
@@ -17,7 +17,8 @@ func GetBranches(ctx *gin.Context) {
 		return
 	}
 
-	branches, err := service.GetBranches(GetBranchesRequest.RepoPath)
+	// TODO: userID
+	branches, err := service.GetBranches("", GetBranchesRequest.RepoPath)
 	if err != nil {
 		ctx.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
 		return
@@ -34,7 +35,8 @@ func CreateBranch(ctx *gin.Context) {
 		return
 	}
 
-	err := service.CreateBranch(CreateBranchRequest.RepoPath, CreateBranchRequest.BranchName, CreateBranchRequest.Revision)
+	// TODO: userID
+	err := service.CreateBranch("", CreateBranchRequest.RepoPath, CreateBranchRequest.BranchName, CreateBranchRequest.Revision)
 	if err != nil {
 		ctx.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
 		return
@@ -51,7 +53,8 @@ func DeleteBranch(ctx *gin.Context) {
 		return
 	}
 
-	err := service.DeleteBranch(DeleteBranchRequest.RepoPath, DeleteBranchRequest.BranchName)
+	// TODO: userID
+	err := service.DeleteBranch("", DeleteBranchRequest.RepoPath, DeleteBranchRequest.BranchName)
 	if err != nil {
 		ctx.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
 		return

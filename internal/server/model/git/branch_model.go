@@ -1,4 +1,4 @@
-package service
+package model
 
 import (
 	"fmt"
@@ -7,7 +7,6 @@ import (
 	"github.com/go-git/go-git/v5/plumbing"
 
 	"gitnet/internal/pkg/common"
-	"gitnet/internal/pkg/utils"
 )
 
 func GetBranches(repoPath string) ([]common.Branch, error) {
@@ -35,10 +34,6 @@ func GetBranches(repoPath string) ([]common.Branch, error) {
 }
 
 func CreateBranch(repoPath string, branchName string, revision string) error {
-	if !utils.CheckBranchName(branchName) {
-		return fmt.Errorf("invalid branch name %s", branchName)
-	}
-
 	repo, err := git.PlainOpen(repoPath)
 	if err != nil {
 		return err
@@ -61,10 +56,6 @@ func CreateBranch(repoPath string, branchName string, revision string) error {
 }
 
 func DeleteBranch(repoPath string, branchName string) error {
-	if !utils.CheckBranchName(branchName) {
-		return fmt.Errorf("invalid branch name %s", branchName)
-	}
-
 	repo, err := git.PlainOpen(repoPath)
 	if err != nil {
 		return err

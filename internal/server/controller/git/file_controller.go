@@ -6,7 +6,7 @@ import (
 	"github.com/gin-gonic/gin"
 
 	"gitnet/internal/pkg/common"
-	"gitnet/internal/server/service"
+	"gitnet/internal/server/service/git"
 )
 
 // route: /api/repo/getFiles [Get]
@@ -19,7 +19,8 @@ func GetFiles(ctx *gin.Context) {
 	repoPath := GetFilesRequest.RepoPath
 	revision := GetFilesRequest.Revision
 
-	files, err := service.GetFiles(repoPath, revision)
+	// TODO: userID
+	files, err := service.GetFiles("", repoPath, revision)
 	if err != nil {
 		ctx.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
 		return

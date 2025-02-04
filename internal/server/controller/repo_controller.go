@@ -9,7 +9,7 @@ import (
 	"gitnet/internal/server/service"
 )
 
-// route: GET /api/repos/getBranches [Get]
+// route: /api/repo/getBranches [Get]
 func GetBranches(ctx *gin.Context) {
 	var GetBranchesRequest common.GetBranchesRequest
 	if err := ctx.ShouldBindJSON(&GetBranchesRequest); err != nil {
@@ -26,7 +26,7 @@ func GetBranches(ctx *gin.Context) {
 	ctx.JSON(http.StatusOK, gin.H{"branches": branches})
 }
 
-// route: GET /api/repos/createBranch [Post]
+// route: /api/repo/createBranch [Post]
 func CreateBranch(ctx *gin.Context) {
 	var CreateBranchRequest common.CreateBranchRequest
 	if err := ctx.ShouldBindJSON(&CreateBranchRequest); err != nil {
@@ -43,6 +43,7 @@ func CreateBranch(ctx *gin.Context) {
 	ctx.JSON(http.StatusOK, gin.H{})
 }
 
+// route: /api/repo/deleteBranch [Post]
 func DeleteBranch(ctx *gin.Context) {
 	var DeleteBranchRequest common.DeleteBranchRequest
 	if err := ctx.ShouldBindJSON(&DeleteBranchRequest); err != nil {

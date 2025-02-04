@@ -5,14 +5,21 @@ import (
 
 	"github.com/gin-gonic/gin"
 
+	"gitnet/internal/pkg/common"
 	"gitnet/internal/server/service"
 )
 
-func GetRepoFiles(ctx *gin.Context) {
-	repoPath := ctx.Param("repoPath")
-	revision := ctx.Param("revision")
+// route: /api/repo/getFiles [Get]
+func GetFiles(ctx *gin.Context) {
+	var GetFilesRequest common.GetFilesRequest
+	if err := ctx.ShouldBindJSON(&GetFilesRequest); err != nil {
+		ctx.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+		return
+	}
+	repoPath := GetFilesRequest.RepoPath
+	revision := GetFilesRequest.Revision
 
-	files, err := service.GetRepoFiles(repoPath, revision)
+	files, err := service.GetFiles(repoPath, revision)
 	if err != nil {
 		ctx.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
 		return

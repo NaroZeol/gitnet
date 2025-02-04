@@ -9,11 +9,10 @@ import (
 func main() {
 	app := gin.Default()
 
-	app.GET("/repos/:repoPath/revision/:revision/files", controller.GetRepoFiles)
-
 	app_api := app.Group("/api")
-	app_api_repo := app_api.Group("/repos")
+	app_api_repo := app_api.Group("/repo")
 	{
+		app_api_repo.GET("/getFiles", controller.GetFiles)
 		app_api_repo.GET("/getBranches", controller.GetBranches)
 		app_api_repo.POST("/createBranch", controller.CreateBranch)
 		app_api_repo.POST("/deleteBranch", controller.DeleteBranch)

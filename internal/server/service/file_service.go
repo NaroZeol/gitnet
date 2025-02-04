@@ -6,8 +6,8 @@ import (
 	"github.com/go-git/go-git/v5/plumbing/object"
 )
 
-// GetRepoFiles returns the files in a repository
-func GetRepoFiles(repoPath string, revision string) ([]string, error) {
+// GetFiles returns the files in a repository
+func GetFiles(repoPath string, revision string) ([]string, error) {
 	repo, err := git.PlainOpen(repoPath)
 	if err != nil {
 		return nil, err

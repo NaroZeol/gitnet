@@ -2,7 +2,7 @@ package common
 
 // file_controller.go
 
-type GetRepoFilesRequest struct {
+type GetFilesRequest struct {
 	RepoPath string `json:"repoPath"`
 	Revision string `json:"revision"`
 }

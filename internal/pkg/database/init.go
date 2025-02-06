@@ -8,8 +8,8 @@ import (
 
 var DB *gorm.DB
 
-func Init() {
-	ConnectToMySQL("localhost", "3306", "gitnet", "gitnet", "gitnet")
+func Init(host, port, user, pass, dbname string) {
+	ConnectToMySQL(host, port, user, pass, dbname)
 	DB.Logger = logger.Default.LogMode(logger.Silent)
 }
 

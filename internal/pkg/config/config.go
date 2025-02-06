@@ -9,7 +9,8 @@ import (
 )
 
 type Config struct {
-	Database database.Database `json:"database"`
+	Database   database.Database `json:"database"`
+	ServerPort string            `json:"server_port"`
 }
 
 func LoadConfig(path string) Config {

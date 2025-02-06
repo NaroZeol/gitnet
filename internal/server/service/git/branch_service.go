@@ -9,25 +9,46 @@ import (
 )
 
 func GetBranches(userID string, repoPath string) ([]common.Branch, error) {
-	// TODO: Check if user has access to the repository
+	isOwner, err := CheckOwnership(userID, repoPath)
+	if err != nil {
+		return nil, err
+	}
 
-	return model.GetBranches(repoPath)
+	if !isOwner {
+		return nil, fmt.Errorf("user %s does not own repository %s", userID, repoPath)
+	}
+
+	return git.GetBranches(repoPath)
 }
 
 func CreateBranch(userID string, repoPath string, branchName string, revision string) error {
-	// TODO: Check if user has access to the repository
+	isOwner, err := CheckOwnership(userID, repoPath)
+	if err != nil {
+		return err
+	}
+
+	if !isOwner {
+		return fmt.Errorf("user %s does not own repository %s", userID, repoPath)
+	}
 
 	if !utils.CheckBranchName(branchName) {
 		return fmt.Errorf("invalid branch name %s", branchName)
 	}
-	return model.CreateBranch(repoPath, branchName, revision)
+	return git.CreateBranch(repoPath, branchName, revision)
 }
 
 func DeleteBranch(userID string, repoPath string, branchName string) error {
-	// TODO: Check if user has access to the repository
+	isOwner, err := CheckOwnership(userID, repoPath)
+	if err != nil {
+		return err
+	}
+
+	if !isOwner {
+		return fmt.Errorf("user %s does not own repository %s", userID, repoPath)
+	}
 
 	if !utils.CheckBranchName(branchName) {
 		return fmt.Errorf("invalid branch name %s", branchName)
 	}
-	return model.DeleteBranch(repoPath, branchName)
+	return git.DeleteBranch(repoPath, branchName)
 }

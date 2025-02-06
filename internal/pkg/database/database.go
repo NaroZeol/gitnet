@@ -39,12 +39,12 @@ func (u *User) ToResponse() common.User {
 type Repository struct {
 	gorm.Model `json:"-"`
 	ID         uint           `gorm:"primary_key:id"`
-	Name       string         `gorm:"column:name"`
+	Path       string         `gorm:"column:path"`
 	CreatedAt  time.Time      `gorm:"column:created_at"`
 	UpdatedAt  time.Time      `gorm:"column:updated_at"`
 	DeletedAt  gorm.DeletedAt `gorm:"column:deleted_at"`
 
-	OwnnerID uint `gorm:"foreignkey:UserID" json:"ownner_id"`
+	OwnerID uint `gorm:"foreignkey:UserID" json:"owner_id"`
 }
 
 func (Repository) TableName() string {

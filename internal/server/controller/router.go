@@ -9,7 +9,12 @@ import (
 
 func SetRouter(app *gin.Engine) {
 	app_api := app.Group("/api")
+
 	app_api_repo := app_api.Group("/repo")
+	{
+		app_api_repo.POST("/createRepository", git.CreateRepository)
+		app_api_repo.POST("/deleteRepository", git.DeleteRepository)
+	}
 
 	app_api_repo_file := app_api_repo.Group("/file") // /api/repo/file
 	{

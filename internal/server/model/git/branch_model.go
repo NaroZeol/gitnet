@@ -1,4 +1,4 @@
-package model
+package git
 
 import (
 	"fmt"

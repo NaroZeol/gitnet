@@ -10,7 +10,7 @@ var DB *gorm.DB
 
 func Init(host, port, user, pass, dbname string) {
 	ConnectToMySQL(host, port, user, pass, dbname)
-	DB.Logger = logger.Default.LogMode(logger.Silent)
+	DB.Logger = logger.Default.LogMode(logger.Info)
 }
 
 func ConnectToMySQL(host, port, user, pass, dbname string) error {

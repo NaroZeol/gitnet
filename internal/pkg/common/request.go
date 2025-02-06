@@ -7,7 +7,7 @@ type GetFilesRequest struct {
 	Revision string `json:"revision"`
 }
 
-// repo_controller.go
+// branch_controller.go
 
 type GetBranchesRequest struct {
 	RepoPath string `json:"repoPath"`
@@ -22,6 +22,16 @@ type CreateBranchRequest struct {
 type DeleteBranchRequest struct {
 	RepoPath   string `json:"repoPath"`
 	BranchName string `json:"branchName"`
+}
+
+// repo_controller.go
+
+type CreateRepositoryRequest struct {
+	RepoPath string `json:"repoPath"`
+}
+
+type DeleteRepositoryRequest struct {
+	RepoPath string `json:"repoPath"`
 }
 
 // user_controller.go

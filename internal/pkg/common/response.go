@@ -19,3 +19,17 @@ type CreateBranchResponse struct {
 type DeleteBranchResponse struct {
 	Message string `json:"message"`
 }
+
+// user_controller.go
+
+type GetUserListResponse struct {
+	Users []User `json:"users"`
+}
+
+type CreateUserResponse struct {
+	Message string `json:"message"`
+}
+
+type DeleteUserResponse struct {
+	Message string `json:"message"`
+}

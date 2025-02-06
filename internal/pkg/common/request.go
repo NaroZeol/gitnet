@@ -23,3 +23,14 @@ type DeleteBranchRequest struct {
 	RepoPath   string `json:"repoPath"`
 	BranchName string `json:"branchName"`
 }
+
+// user_controller.go
+
+type CreateUserRequest struct {
+	Name     string `json:"username"`
+	Password string `json:"password"`
+}
+
+type DeleteUserRequest struct {
+	Name string `json:"username"`
+}

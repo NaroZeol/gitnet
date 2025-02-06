@@ -22,6 +22,11 @@ type DeleteBranchResponse struct {
 
 // user_controller.go
 
+type User struct {
+	ID   uint   `json:"id"`
+	Name string `json:"name"`
+}
+
 type GetUserListResponse struct {
 	Users []User `json:"users"`
 }
